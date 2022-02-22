@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@1,100&family=Roboto+Serif:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap");
 
 html {
   box-sizing: border-box;
@@ -15,7 +15,7 @@ h1 {
   margin-top: 25px;
   margin-bottom: 15px;
   font-size: 40px;
-  letter-spacing: 5;
+  letter-spacing: 5px;
 }
 
 /* Loader */
@@ -45,11 +45,12 @@ h1 {
   margin-top: 5px;
 }
 
-/* Media Querey: Large Smartphone */
+/* Media Query: Large Smartphone Vertical */
 @media screen and (max-width: 600px) {
   h1 {
     font-size: 20px;
   }
+
   .image-container {
     margin: 10px;
   }
