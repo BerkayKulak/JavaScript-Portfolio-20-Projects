@@ -46,6 +46,7 @@ video {
   z-index: 2;
   display: flex;
   justify-content: center;
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 .input-container {
@@ -92,6 +93,10 @@ button {
   color: white;
   cursor: pointer;
   outline: none;
+}
+
+button:hover {
+  filter: brightness(110%);
 }
 
 /* Countdown */
