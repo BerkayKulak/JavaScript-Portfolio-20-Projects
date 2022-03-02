@@ -28,9 +28,6 @@ const choices = {
   spock: { name: "Spock", defeats: ["scissors", "rock"] },
 };
 
-
-
-
 // Reset all 'selected' icons, remove confetti
 function resetSelected() {
   allGameIcons.forEach((icon) => {
@@ -40,50 +37,67 @@ function resetSelected() {
   removeConfetti();
 }
 
-
 function computerRandomChoice() {
   const computerChoiceNumber = Math.random();
   if (computerChoiceNumber < 0.2) {
-    computerChoice = 'rock';
+    computerChoice = "rock";
   } else if (computerChoiceNumber <= 0.4) {
-    computerChoice = 'paper';
+    computerChoice = "paper";
   } else if (computerChoiceNumber <= 0.6) {
-    computerChoice = 'scissors';
+    computerChoice = "scissors";
   } else if (computerChoiceNumber <= 0.8) {
-    computerChoice = 'lizard';
+    computerChoice = "lizard";
   } else {
-    computerChoice = 'spock';
+    computerChoice = "spock";
   }
 }
 
 // Add 'selected' styling & computerChoice
 function displayComputerChoice() {
   switch (computerChoice) {
-    case 'rock':
-      computerRock.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Rock';
+    case "rock":
+      computerRock.classList.add("selected");
+      computerChoiceEl.textContent = " --- Rock";
       break;
-    case 'paper':
-      computerPaper.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Paper';
+    case "paper":
+      computerPaper.classList.add("selected");
+      computerChoiceEl.textContent = " --- Paper";
       break;
-    case 'scissors':
-      computerScissors.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Scissors';
+    case "scissors":
+      computerScissors.classList.add("selected");
+      computerChoiceEl.textContent = " --- Scissors";
       break;
-    case 'lizard':
-      computerLizard.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Lizard';
+    case "lizard":
+      computerLizard.classList.add("selected");
+      computerChoiceEl.textContent = " --- Lizard";
       break;
-    case 'spock':
-      computerSpock.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Spock';
+    case "spock":
+      computerSpock.classList.add("selected");
+      computerChoiceEl.textContent = " --- Spock";
       break;
     default:
       break;
   }
 }
 
+// Check result, increase scores, update resultText
+function updateScore(playerChoice) {
+  if (playerChoice === computerChoice) {
+    resultText.textContent = "It's a tie.";
+  } else {
+    const choice = choices[playerChoice];
+    if (choice.defeats.indexOf(computerChoice) > -1) {
+      startConfetti();
+      resultText.textContent = "You Won!";
+      playerScoreNumber++;
+      playerScoreEl.textContent = playerScoreNumber;
+    } else {
+      resultText.textContent = "You Lost!";
+      computerScoreNumber++;
+      computerScoreEl.textContent = computerScoreNumber;
+    }
+  }
+}
 
 // Call functions to process turn
 function checkResult(playerChoice) {
