@@ -28,6 +28,10 @@ const choices = {
   spock: { name: "Spock", defeats: ["scissors", "rock"] },
 };
 
+let playerScoreNumber = 0;
+let computerScoreNumber = 0;
+let computerChoice = "";
+
 // Reset all 'selected' icons, remove confetti
 function resetSelected() {
   allGameIcons.forEach((icon) => {
@@ -50,6 +54,7 @@ function resetAll() {
 }
 window.resetAll = resetAll;
 
+// Random computer choice
 function computerRandomChoice() {
   const computerChoiceNumber = Math.random();
   if (computerChoiceNumber < 0.2) {
@@ -150,3 +155,6 @@ function select(playerChoice) {
   }
 }
 window.select = select;
+
+// On startup, set initial values
+resetAll();
