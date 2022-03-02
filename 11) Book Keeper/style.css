@@ -104,7 +104,7 @@ a:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   max-width: 95%;
   width: 500px;
-  animation: modalopen 5s;
+  animation: modalopen 4s;
 }
 
 @keyframes modalopen {
@@ -154,12 +154,12 @@ h3 {
   outline: none;
 }
 
-.form-label{
+.form-label {
   color: var(--primary-color);
   display: block;
 }
 
-button{
+button {
   cursor: pointer;
   color: white;
   background: var(--primary-color);
@@ -168,14 +168,12 @@ button{
   border: none;
   border-radius: var(--border-radius);
   margin-top: 10px;
-
 }
 
-button:hover{
+button:hover {
   filter: brightness(110%);
 }
 
-button:focus{
-  outline: none
-  ;
+button:focus {
+  outline: none;
 }
