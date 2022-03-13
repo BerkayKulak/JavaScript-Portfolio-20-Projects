@@ -89,3 +89,13 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+const eurToUsd = 1.1;
+const movementsUSD = movements.map(mov => {
+  mov * eurToUsd;
+});
+
+const movementsDescriptions = movements.map((mov, i) => {
+  `Movement ${i + 1} You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+    mov
+  )}`;
+});
