@@ -80,22 +80,15 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+const createUserNames = function (accounts) {
+  accounts.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
-const eurToUsd = 1.1;
-const movementsUSD = movements.map(mov => {
-  mov * eurToUsd;
-});
-
-const movementsDescriptions = movements.map((mov, i) => {
-  `Movement ${i + 1} You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
-    mov
-  )}`;
-});
+createUserNames(accounts);
+console.log(accounts);
