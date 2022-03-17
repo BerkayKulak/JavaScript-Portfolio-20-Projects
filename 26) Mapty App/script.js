@@ -31,6 +31,7 @@ if (navigator.geolocation)
       map.on('click', function (mapEvent) {
         console.log(mapEvent);
         const { lat, lng } = mapEvent.latlng;
+        console.log('sdaf');
         L.marker([lat, lng])
           .addTo(map)
           .bindPopup(
