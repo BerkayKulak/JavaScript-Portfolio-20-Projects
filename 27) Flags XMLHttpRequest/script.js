@@ -3,8 +3,6 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
-///////////////////////////////////////
-
 const renderCountry = function (data, className = '') {
   const html = `
     <article class="country ${className}">
@@ -22,8 +20,14 @@ const renderCountry = function (data, className = '') {
   `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
+  //countriesContainer.style.opacity = 1;
 };
+
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  //countriesContainer.style.opacity = 1;
+};
+///////////////////////////////////////
 
 const getCountryAndNeighbour = function (country) {
   const request = new XMLHttpRequest();
@@ -50,33 +54,6 @@ const getCountryAndNeighbour = function (country) {
   });
 };
 
-// getCountryAndNeighbour('Italy');
-
-// setTimeout(() => {
-//   console.log('1 second passed');
-//   setTimeout(() => {
-//     console.log('2 second passed');
-//     setTimeout(() => {
-//       console.log('3 second passed');
-//       setTimeout(() => {
-//         console.log('4 second passed');
-//       }, 1000);
-//     }, 1000);
-//   }, 1000);
-// }, 1000);
-
-// const getCountryData = function (country) {
-//   fetch(`https://restcountries.com/v3.1/name/${country}`)
-//     .then(function (response) {
-//       console.log(response);
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       renderCountry(data[0]);
-//     });
-// };
-
 const getCountryData = function (country) {
   fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then(response => response.json())
@@ -88,7 +65,17 @@ const getCountryData = function (country) {
       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
     })
     .then(response => response.json())
-    .then(data => renderCountry(data, 'neighbour'));
+
+    .then(data => renderCountry(data, 'neighbour'))
+    .catch(err => {
+      console.error(`${err} 💥`);
+      renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
 };
 
-getCountryData('portugal');
+btn.addEventListener('click', function () {
+  getCountryData('portugal');
+});
