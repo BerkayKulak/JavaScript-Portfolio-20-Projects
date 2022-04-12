@@ -9,6 +9,10 @@ eventListeners();
 
 function eventListeners() {
   form.addEventListener("submit", addNewItem);
+
+  taskList.addEventListener("click", deleteItem);
+
+  btnDeleteAll.addEventListener("click", deleteAllItems);
 }
 
 function addNewItem(e) {
@@ -30,6 +34,32 @@ function addNewItem(e) {
   taskList.appendChild(li);
 
   input.value = "";
+
+  e.preventDefault();
+}
+
+function deleteItem(e) {
+  if (e.target.className === "fas fa-times") {
+    e.target.parentElement.parentElement.remove();
+  }
+
+  e.preventDefault();
+}
+
+function deleteAllItems(e) {
+  //taskList.innerHTML = "";
+
+  // while (taskList.firstChild) {
+  //     taskList.removeChild(taskList.firstChild);
+  // }
+
+  if (confirm("are you sure")) {
+    taskList.childNodes.forEach(function (item) {
+      if (item.nodeType === 1) {
+        item.remove();
+      }
+    });
+  }
 
   e.preventDefault();
 }
