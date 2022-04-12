@@ -61,6 +61,7 @@ function deleteItem(e) {
 }
 
 function deleteAllItems(e) {
+  //
   //taskList.innerHTML = "";
 
   // while (taskList.firstChild) {
