@@ -4,6 +4,10 @@ const form = document.querySelector("form");
 const input = document.querySelector("#txtTaskName");
 const btnDeleteAll = document.querySelector("#btnDeleteAll");
 const taskList = document.querySelector("#task-list");
+const items = ["item 1", "item 2", "item 3", "item 4"];
+
+// load items
+loadItems();
 
 eventListeners();
 
@@ -15,14 +19,16 @@ function eventListeners() {
   btnDeleteAll.addEventListener("click", deleteAllItems);
 }
 
-function addNewItem(e) {
-  if (input.value === "") {
-    alert("add a task");
-  }
+function loadItems() {
+  items.forEach(function (item) {
+    createItem(item);
+  });
+}
 
+function createItem(text) {
   const li = document.createElement("li");
   li.className = "list-group-item list-group-item-secondary";
-  li.appendChild(document.createTextNode(input.value));
+  li.appendChild(document.createTextNode(text));
 
   const a = document.createElement("a");
   a.classList = "delete-item float-right";
@@ -32,6 +38,14 @@ function addNewItem(e) {
   li.appendChild(a);
 
   taskList.appendChild(li);
+}
+
+function addNewItem(e) {
+  if (input.value === "") {
+    alert("add a task");
+  }
+
+  createItem(input.value);
 
   input.value = "";
 
