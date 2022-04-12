@@ -28,8 +28,13 @@ var models = [
 
 var index = 0;
 var slaytCount = models.length;
+var interval;
+var settings = {
+  duration: "2000",
+  random: false,
+};
 
-showSlide(index);
+init(settings);
 
 document
   .querySelector(".fa-arrow-circle-left")
@@ -46,6 +51,41 @@ document
     showSlide(index);
     console.log(index);
   });
+
+document.querySelectorAll(".arrow").forEach(function (item) {
+  item.addEventListener("mouseenter", function () {
+    clearInterval(interval);
+  });
+});
+
+document.querySelectorAll(".arrow").forEach(function (item) {
+  item.addEventListener("mouseleave", function () {
+    init(settings);
+  });
+});
+
+function init(settings) {
+  var prev;
+  interval = setInterval(function () {
+    if (settings.random) {
+      do {
+        index = Math.floor(Math.random() * slaytCount);
+      } while (index == prev);
+      {
+        prev = index;
+      }
+    } else {
+      if (slaytCount == index + 1) {
+        index = -1;
+      }
+      showSlide(index);
+      console.log(index);
+      index++;
+    }
+
+    showSlide(index);
+  }, settings.duration);
+}
 
 function showSlide(i) {
   index = i;
